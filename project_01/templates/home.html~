@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang='en' >
+    <head>
+        <title>Home Page</title>
+        <meta charset="UTF-8" >
+        <meta name="viewport" width="device-width, initial-scale=1" >
+        <link type="text/css" href="{% static 'basic_style.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="header" >
+            <h1>Website</h1>
+            <p>My Website</p>
+        </div>
+        <div id="nav_bar" >
+            <a href="#">HOME</a>
+            <a href="#">TOOLS</a>
+            <a href="#">SOURCE CODE</a>
+            <a href="#" style="float:right;">RESUME</a>        
+        </div>
+        <div class="row" >
+            <div class="side" >
+                <h3>
+                    Side Panel                
+                </h3>
+                <p>
+                    Side content/Image
+                </p>
+                <h4 style="text-align : center">
+                    Side Content
+                </h4>
+                <p class='small_image'>
+                    Side small content/Image
+                </p>
+                <p class='small_image'>
+                    Side small content/Image
+                </p>
+                <p class='small_image'>
+                    Side small content/Image
+                </p>
+            </div>
+            <div class="main" >
+                <h3>
+                    Main Panel
+                </h3>
+                <p>
+                    Main content/Image
+                </p>
+                <h4 style="text-align : center">
+                    Main Content
+                </h4>
+                <p>
+                    Main content/Image again
+                </p>
+            </div>
+        </div>
+        <div class="footer">
+            <p id="aboutme" >
+                About me
+            </p>
+            <p style="font-size : 15px" >
+                Pragyanshu Rai
+                <br />
+                <br />
+                Address
+                <br />
+                <br />
+                +91 98576 40132
+            </p>
+        </div>
+    </body>
+</html>
