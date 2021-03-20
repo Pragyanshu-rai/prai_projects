@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load static %}
+   
+
+{% block header %}
+        
+    <h1>{{project}}</h1>
+    <p>My {{project}}</p>
+    
+{% endblock %}
+
+{% block main_block %}
+{% if user.is_authenticated %} 
+
+
+    <div class="row">
+        
+        <div class="container">
+            {% for card_data in cards %}
+        
+            <a href="{% url 'source' card_data.pk %}" style="color:black;">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header" style="text-align:center;font-size:50px;width:100%;height:200px;"><h2>{{card_data.project_title}}</h2></div>  
+                            <div class="card-body"><h4><strong> Language:-</strong> {{card_data.language}}</h4></div>
+                            <div class="card-footer"><p><b> Lines:-</b> {{card_data.lines}}</p></div>
+                        </div>
+                    </div>
+            </a>
+        
+            {% endfor %}
+        </div>
+        
+    </div>
+
+
+{% else %}
+    <div style="height:550px; margin-top:250px;">
+        <h1 style="text-align: center;" ><span style="color:white;" >Please Login!</span></h1>
+    </div>
+{% endif %}
+{% endblock %}

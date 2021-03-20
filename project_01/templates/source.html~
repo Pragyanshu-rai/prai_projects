@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+
+{% block main_block %}
+{% if user.is_authenticate %}    
+
+    
+    <div style="min-height:900px; background:rgba(230, 230, 230, 0.5);font-size:26px;padding:10px;margin:25px;">
+    
+    <!--very unsafe!!!!!-->
+    {# {% autoescape off %} #}
+     
+        <p>
+            <pre class="prettyprint linenums" style="padding-left:40px;overflow:auto;margin-top:-10px" >
+                
+                    {{content}} 
+                
+            </pre>
+        </p> 
+           
+    {# {% endautoescape %} #}
+        
+    </div>
+
+{% else %}
+    <div style="height:550px; margin-top:250px;">
+        <h1 style="text-align: center;" ><span style="color:white;" >Please Login!</span></h1>
+    </div>
+{% endif %}
+{% endblock %}

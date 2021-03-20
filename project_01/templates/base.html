@@ -1,0 +1,85 @@
+{% load static %}<!-- to load the static files css or js-->
+<!DOCTYPE html>
+<html lang='en' >
+    <head>
+        <title>{{title}}</title> 
+        <meta charset="UTF-8" >
+        <meta name="viewport" width="device-width, initial-scale=1" >
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/main_icon.png' %}">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/basic_style.css' %}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <!--<script src="{% static 'js/response.js' %}"></script>-->
+        <script type="text/js" src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=java&amp;skin=sons-of-obsidian"></script>
+    </head>
+    <body>
+        <div class="parallax">
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand active" href="{% url 'home' %}"><div style="display:inline"> <img src="{% static 'images/main_icon.png' %}">  Pragyanshu Rai </div></a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="{% url 'project' %}"><span class="glyphicon glyphicon-folder-open"></span> Projects</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'task_manager' %}"><span class="glyphicon glyphicon-tasks"></span> Task Manager</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        
+                        <li>
+                            <a href="{% url 'useraccount' user.id %}"><span class="glyphicon glyphicon-user"></span> Hey! {{user.username}}</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'log_out' %}"><span class="glyphicon glyphicon-log-out"></span> LogOut</a>
+                        </li>
+                    
+                    {% else %}
+                        <li>
+                            <a href="{% url 'sign_up' %}"><span class="glyphicon glyphicon-user"></span> SignUp</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'log_in' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+                
+    
+        <div  class="mainheadings">
+            <h1><b>{{heading}}</b></h1>
+        </div>
+        
+        {% if heading == "Source Code"%}
+            <h2 class="headings">
+                <b>{{card_name}}</b>
+            </h2>
+        {% endif %}
+
+        {% block main_block %}
+            
+        {% endblock %}  
+        
+        <div class="footer">
+            <p id="aboutme" >
+                About me
+            </p>
+            <p style="font-size : 15px" >
+                Pragyanshu Rai
+                <br />
+                <br />
+                Address
+                <br />
+                <br />
+                +91 98576 40132
+            </p>
+        </div>
+        </div>
+    </body>
+</html>

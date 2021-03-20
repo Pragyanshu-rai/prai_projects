@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'app_01.apps.App01Config',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'project_01.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ path.join(BASE_DIR, 'templates') ],
+        'DIRS': [ path.join(BASE_DIR, 'templates') ], # to save the path of the folder containing the html files 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,3 +126,5 @@ STATICFILES_DIRS = [
     path.join(BASE_DIR, 'static')
 ]
 STATIC_ROOT = path.join(BASE_DIR, 'all_static')
+
+

@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'app_01.apps.App01Config',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -125,3 +126,5 @@ STATICFILES_DIRS = [
     path.join(BASE_DIR, 'static')
 ]
 STATIC_ROOT = path.join(BASE_DIR, 'all_static')
+
+

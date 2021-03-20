@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block main_block %}
+
+<div class="container-fluid" style="height:700px;">
+        
+    <div class="row" >
+        
+        <div class="col-md-2" style="background:rgba(0, 0, 0, 0);">
+        </div>
+        
+        <div class="col-md-9" style="background:rgba(0, 0, 0, 0.4); height:400px; margin-top: 100px; border-radius:10px;">
+        
+            <div class="container-fluid" style="height:600px;">
+        
+                <div class="row" >
+        
+                    <div class="col-md-6 lg_su" style="background:#ffffff; height:520px; margin-top:-60px;">
+        
+                        <h4 style="text-align: center; font-size: 55px;"><strong>Log In</strong></h4>
+        
+                        <form method="post" action="" style="text-align: left" >
+            
+                            {% csrf_token %}
+                            
+                            <label class="above" for="user_name" ><strong>User Name</strong></label><br />
+                            <input class="login_signup" type="text" name="user_name" required/><br />
+                                
+                            <label class="above" for="password" ><strong>Password</strong></label><br />
+                            <input class="login_signup" type="password" name="password" required/>
+                            <b><input class="login_signup_sub" type="submit" value="Log In" /></b>
+        
+                       </form>
+        
+                    </div> 
+                    
+                    <div class="col-md-6" style="background:rgba(0, 0, 0, 0); color:white; margin-top: 100px;">
+                        <p>
+                            
+                            <h3 style="color:white; font-size:50px;"><strong>New Here?</strong></h3>
+                            <a href="{% url 'sign_up' %}"><button class="login_signup_sub">Sign Up</button>
+                        </p>
+                    </div>
+        
+                </div>
+        
+            </div>
+        
+        </div>
+        
+        <div class="col-md-1" style="background:rgba(0, 0, 0, 0);">
+        </div>
+        
+    </div>
+        
+</div>
+
+<div class="container" >
+    {% for message in messages %}
+    
+        <div class=" alert alert-danger alert-dismissible fade in ">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Warning! </strong>{{message}}.
+        </div>    
+    
+    {% endfor %}
+</div>
+{% endblock %}
