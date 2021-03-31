@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from .models import Doctor, Contact, Details
+from .models import Doctors, Contact, Details
 
 # Register your models here.
 
-admin.site.register(Doctor)
+admin.site.register(Doctors)
     
 admin.site.register(Contact)
 

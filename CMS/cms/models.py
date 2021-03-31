@@ -16,9 +16,9 @@ class Doctor(models.Model):
     
     office_number = models.CharField(max_length=11)
     
-    def __str__(this):
+    def __str__(self):
         
-        return str(this.id)+" "+this.name+" "+domain
+        return str(self.id)+" - "+self.name+" - "+self.domain
     
 
 class Contact(models.Model):
@@ -33,9 +33,19 @@ class Contact(models.Model):
         self.user = user
         self.address = address
         self.phone = phone
+    
+    def __str__(self):
+        
+        return str(self.user.username)+" - "+self.phone
 
 class Details(models.Model):
     
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE) 
         
+    prescription = models.CharField(max_length=30, default="day - none")
+    
     detail = models.ImageField(null=True) 
+    
+    def __str__(self):
+        
+        return self.prescription

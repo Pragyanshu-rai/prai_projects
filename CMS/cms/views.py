@@ -6,7 +6,7 @@ from django.http import HttpResponse
 
 from django.contrib import messages
 
-#from .models import Contact, Details, Doctor
+from .models import Contact, Details, Doctor
 
 from os import path
 
