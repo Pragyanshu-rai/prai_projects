@@ -32,9 +32,9 @@
                             <label class="above" for="password" ><strong>Password</strong></label><br />
                             <input class="login_signup" type="password" name="password" required/><br />
                             
-                            <label class="above" for="confirm" ><strong>Confirm Password</strong></label><br />
+                            <label class="above" for="confirm" ><strong>Confirm Password</strong></label>
                             <input class="login_signup" type="password" name="confirm" required/><br />
-                            <b><input class="login_signup_sub" type="submit" value="Sign Up" /></b>
+                            <b><input class="login_signup_sub" type="submit" value="Sign Up" style="margin-top:10px;"/></b>
         
                        </form>
         

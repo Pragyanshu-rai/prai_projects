@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block main_block %}
-{% if user.is_authenticate %} 
+{% if user.is_authenticated %} 
 
 
     <div class="row">
