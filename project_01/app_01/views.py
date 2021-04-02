@@ -46,7 +46,7 @@ def log_in(request):
             
             messages.info(request, 'Logged in')
             
-            return redirect('home')
+            return redirect('useraccount', uid=user.id)
     
     else:
         
@@ -95,13 +95,11 @@ def log_out(request):
     auth.logout(request)
     return redirect('home')
 
-def useraccount(request, uid):
-    
-    user = User.objects.get(pk=uid)    
+def useraccount(request, uid):    
     
     titles=dict()
     
-    titles['heading']=user.username
+    titles['heading']="Profile"
     
     titles['title']="Account"
     

@@ -14,13 +14,21 @@ from pathlib import Path
 
 # Create your views here.
 
-otp = dict()
+stuff = dict()
 
-def home(request):
+def home(request):    
     
     if request.user.is_authenticated == True:
         
-        return render(request, 'profile.html')
+        contact = Contact.objects.get(user = request.user)
+        
+        stuff['address'] = contact.address
+        
+        stuff['number'] = contact.phone
+        
+        print(stuff)
+        
+        return render(request, 'profile.html', stuff)
     
     return render(request, 'index.html');
 
@@ -32,7 +40,17 @@ def dashboard(request):
     
     if request.user.is_authenticated == True:
         
-        return render(request, 'dashboard.html')
+        contact = Contact.objects.get(user = request.user)
+        
+        stuff['gender'] = contact.gender
+        
+        stuff['age'] = contact.age
+        
+        stuff['address'] = contact.address
+        
+        stuff['number'] = contact.phone
+        
+        return render(request, 'dashboard.html', stuff)
     
     return redirect('login')
 
@@ -40,7 +58,11 @@ def doctors(request):
     
     if request.user.is_authenticated == True:
         
-        return render(request, 'doctors.html')
+        doctor = Doctor.objects.all()
+        
+        stuff['doctors'] = doctor
+        
+        return render(request, 'doctors.html', stuff)
     
     return redirect('login')
 
@@ -48,11 +70,15 @@ def login(request):
     
     if request.method == 'POST':
         
+        name = request.POST['name']
+        
         email = request.POST['email']
         
         password = request.POST['password']
         
-        user = auth.authenticate(email=email, password=password)
+        print(email, password)
+        
+        user = auth.authenticate(username = name+"_"+email, password=password)
         
         if user == None:
             
@@ -64,7 +90,7 @@ def login(request):
             
             auth.login(request, user)
             
-            #messages.info(request, 'Logged in')
+            messages.info(request, 'Logged in')
             
             return redirect('home')
     
@@ -96,7 +122,7 @@ def register(request):
             messages.info(request, 'User Exists')
             return redirect('register')
         
-        user = User.objects.create_user(username =name, password=password, email=email)
+        user = User.objects.create_user(username =name+"_"+email, password=password, email=email, first_name=name)
         #user.save()
         contact = Contact()
         contact.make_contact(user, address, phone)

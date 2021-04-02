@@ -4,8 +4,6 @@
 
 {% block main_block %}
 
-{% if user.is_authenticated %}
-
    <main class="main-body">
 	    <header class="row welcome-section">    
             <div class="col-lg-12 text-center contain">
@@ -46,25 +44,8 @@
                 <div class="col-lg-4">
                 </div>
             </div>
+    <div class="space"></div>
         
     </main>
 
-{% else %}
-    <main class="main-body">
-        
-	    <header class="row welcome-section">    
-            <div class="col-lg-12 text-center contain">
-				<h1><strong>Not Logged in!!!!</strong></h1>
-            </div>
-            <div class="col-lg-1">
-            </div>
-            <div class="col-lg-10 text-center">
-			    <p class="main-content">You must login first!</p>
-            </div>
-            <div class="col-lg-1">
-            </div>
-	    </header>
-            
-    </main>
-{% endif %}
-
+{% endblock %}

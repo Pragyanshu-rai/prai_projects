@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block main_block %}
 
-<div style="height:700px;">
-    
-</div>
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class="card text-center">
+                    <img src="{% static '/images/user.svg' %}" class="card-img-top" height="400px;"/>
+                    <div class="text-center card-title" style="font-size:50px;"><b style="color:white"> {{user.username}}</b></div>
+                    <div class="text-center card-text" style="font-size:50px;"><b style="color:white"> {{user.email}}</b></div>              
+                </div>
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
 
 {% endblock %}

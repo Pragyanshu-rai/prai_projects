@@ -11,6 +11,10 @@ html{
     scroll-behavior : smooth;
 }
 
+.big{
+    font-size : large;
+}
+
 .space{
     height : 40px;
 }
@@ -28,12 +32,7 @@ html{
 
 .navbar-brand{
     margin-left : 10px;
-    transition : 0.3s;
     /*cursor : not-allowed;*/
-}
-
-.navbar-brand:hover{
-    color : red;
 }
 
 .list-inline{
@@ -136,6 +135,11 @@ html{
 .card{
     box-shadow : 0 4px 8px 0 #666;
     transition: 0.3s;
+}
+
+.super-card:hover{
+    cursor : pointer;
+    box-shadow : 0 8px 16px 0 #666;
 }
 
 .pointer{

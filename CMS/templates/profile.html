@@ -7,12 +7,12 @@
    <main class="main-body">
 	    <header class="row welcome-section">    
             <div class="col-lg-12 text-center contain">
-				<h1><strong>Hey {{user.username}}</strong></h1>
+				<h1><strong>Hey {{user.first_name}}</strong></h1>
             </div>
             <div class="col-lg-1">
             </div>
             <div class="col-lg-10 text-center">
-		    <p class="main-content">This is your dashboard!</p>
+		    <p class="main-content">Welcome to your profile page!</p>
             </div>
             <div class="col-lg-1">
             </div>
@@ -32,18 +32,31 @@
                             <img src="{% static 'img/female_avatar.svg' %}" class="card-img-top gradient" height="400px;"/>
                         {% endif %}
                         <div class="card-body">
-                            <h2 class="card-title pointer" ><b>{{user.firstname}} {{user.secondname}}</b></h2>
+                            <h2 class="card-title pointer" ><b>{{user.first_name}} {{user.secondname}}</b></h2>
                             <h4 class="card-text bg-fade pointer" >{{user.age}}</h4>
                             <p class="card-text bio pointer" >{{user.gender}}</p>
                             <p class="card-text bio pointer" ><b>{{user.dob}}</b></p>
-                            <p class="card-text bio pointer" >{{user.address}}</p>
-                            <p class="card-text bio pointer" ><b>(+91) {{user.number}}</b></p>
+                            <p class="card-text bio pointer" >{{address}}</p>
+                            <p class="card-text bio pointer" ><b>(+91) {{number}}</b></p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                 </div>
             </div>
+        
+        <div class="space"></div>
+        <div class="container-fluid">   
+            <div class="row">
+                <div class="col-lg-4">
+                </div>
+                <div class="col-lg-4 text-center">
+                    <a class="btn btn-primary" href="#">Change Password</a>
+                </div>
+                <div class="col-lg-">
+                </div>
+            </div>
+        </div>
         
     </main>
 

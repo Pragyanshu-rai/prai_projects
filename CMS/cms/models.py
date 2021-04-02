@@ -10,6 +10,8 @@ class Doctor(models.Model):
     
     age = models.CharField(max_length=4)
     
+    gender = models.CharField(max_length=6, default="other")
+    
     experience = models.CharField(max_length=4)
     
     domain = models.CharField(max_length=30)
@@ -18,12 +20,16 @@ class Doctor(models.Model):
     
     def __str__(self):
         
-        return str(self.id)+" - "+self.name+" - "+self.domain
+        return str(self.id)+" - "+self.name+" - "+self.gender+" - "+self.domain
     
 
 class Contact(models.Model):
     
     user = models.OneToOneField(User, on_delete=models.CASCADE)    
+    
+    gender = models.CharField(max_length=6, default="other")
+    
+    age = models.CharField(max_length=4, default=10)
     
     address = models.CharField(max_length=80)    
     
@@ -36,7 +42,7 @@ class Contact(models.Model):
     
     def __str__(self):
         
-        return str(self.user.username)+" - "+self.phone
+        return str(self.user.username)+" - "+self.gender+" - "+self.age
 
 class Details(models.Model):
     

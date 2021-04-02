@@ -34,8 +34,6 @@ def log_in(request):
         
         user = auth.authenticate(username=username, password=password)
         
-        print(user.is_authenticated)
-        
         if user == None:
             
             messages.info(request, 'Invalid Login Details')
@@ -48,7 +46,7 @@ def log_in(request):
             
             messages.info(request, 'Logged in')
             
-            return redirect('home')
+            return render(request, 'useraccount', uid=user.id)
     
     else:
         
@@ -97,13 +95,11 @@ def log_out(request):
     auth.logout(request)
     return redirect('home')
 
-def useraccount(request, uid):
-    
-    user = User.objects.get(pk=uid)    
+def useraccount(request, uid):    
     
     titles=dict()
     
-    titles['heading']=user.username
+    titles['heading']="Profile"
     
     titles['title']="Account"
     

@@ -50,7 +50,7 @@
                                 <li>Book an appointment from anywhere.</li>
                             </ul>
                             <br />
-							<a href="{% url 'login' %}" class="btn btn-primary">Book Now !</a>
+							<a href="{% url 'doctors' %}" class="btn btn-primary">Book Now !</a>
 						</div>
 					</div>
 					<div class="col-lg-1">
