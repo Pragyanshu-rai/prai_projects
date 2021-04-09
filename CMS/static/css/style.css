@@ -11,6 +11,10 @@ html{
     scroll-behavior : smooth;
 }
 
+.otp{
+    width : 40%;
+}
+
 .big{
     font-size : 60px;
 }
@@ -132,9 +136,14 @@ html{
 .contain{
 }
 
+.col-lg-4{
+    margin-bottom : 20px;
+}
+
 .card{
     box-shadow : 0 4px 8px 0 #666;
     transition: 0.3s;
+    margin-bottom : 20px;
 }
 
 .super-card:hover{
@@ -182,7 +191,7 @@ html{
 .main-section{
     margin-left : 1.5%;
     margin-left : 1.5%;
-    width :97%;
+    width : 97%;
     margin-bottom : 20px;
 }
 
@@ -190,14 +199,17 @@ html{
     text-align : center;
 }
 
-.footer{
-    font-size : large;
-    padding : 4px;
-    background : lightgray;  
+.top-btn{
+    position : fixed;
+    bottom : 60px;
+    right : 10px;
+    border : none;
+    background : rgba(0, 0, 0, 0);
+    display : none;
 }
 
 .kill-margin{
-    margin:0;
+    margin : 0;
 }
 
 .kill-padding{
@@ -210,6 +222,12 @@ html{
 
 .kill-padding-right{
     padding-right : 0;
+}
+
+.footer{
+    font-size : large;
+    padding : 4px;
+    background : lightgray;  
 }
 
 .footer-body{
@@ -248,8 +266,6 @@ html{
         border-bottom : 0;
     }
     
-    
-    
     .nav-link:hover{
         cursor : pointer;
         background : rgba(10, 124, 235);
@@ -262,5 +278,9 @@ html{
     
     .description-box{
         margin-top: 10px;
+    }
+    
+    .top-btn{
+        bottom : 85px;    
     }
 }

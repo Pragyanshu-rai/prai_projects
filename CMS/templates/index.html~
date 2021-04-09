@@ -44,19 +44,20 @@
                                 <li>Tracking patient upcoming appointments.</li>
                                 <br />
                                 <li><h5><b>For Patients</b></h5></li>
-                                <li>No need to go to the clinic and stand in long lines.</li>
+                                <li>No need to go to the clinic and stand in long queue.</li>
                                 <li>Online prescription saved in the database and can be accessed anytime.</li>
                                 <li>Past consultations are saved in patient record and dashboard.</li>
                                 <li>Book an appointment from anywhere.</li>
                             </ul>
                             <br />
-							<a href="{% url 'doctors' %}" class="btn btn-primary">Book Now !</a>
+							<a href="{% url 'profile' %}" class="btn btn-primary"><i class="fa fa-heartbeat"></i> Book Now !</a>
 						</div>
 					</div>
 					<div class="col-lg-1">
 					</div>
 				</div>
 			</div>
+    <div class="space"></div>
 		</main>
 
         {% endblock %}

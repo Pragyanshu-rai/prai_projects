@@ -14,18 +14,29 @@
             
         <hr />
         
-        <div class="container-fluid" >
-        {% for message in messages %}
+    <div class="container-fluid" >
+    {% for message in messages %}
+        {% if warning == True %}
             <div class="row text-center">
                 <div class="col-lg-1"></div>
-                    <div class="col-lg-10 alert alert-warning alert-dismissible" style="overflow:hide">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>Warning!</strong> {{message}}.
-                    </div>  
+                <div class="col-lg-10 alert alert-danger alert-dismissible" style="overflow:hide">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Warning! </strong> {{message}}.
+                </div>  
                 <div class="col-lg-1"></div>
             </div>
-        {% endfor %}
-        </div>  
+        {% else %}
+            <div class="row text-center">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10 alert alert-success alert-dismissible" style="overflow:hide">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Message! </strong> {{message}}.
+                </div>  
+                <div class="col-lg-1"></div>
+            </div>
+        {% endif %}
+    {% endfor %}
+    </div>
         
         <div class="container-fluid">
             <div class="row">
@@ -58,7 +69,7 @@
                                             <div class="col-lg-12 space"></div>
                                             <div class="col-lg-12 fa fa-intersex dodger side-header" title="Gender"></div>
                                             <div class="col-lg-12" title="Gender">
-                                                <select class="inputs text-center dodger side-header" name="gender" id="cars">
+                                                <select class="inputs text-center dodger side-header" name="gender">
                                                     <option class="side-content" value="Male">Male</option>
                                                     <option class="side-content" value="Female">Female</option>
                                                     <option class="side-content" value="Other">Other</option>
@@ -67,7 +78,7 @@
                                             <div class="col-lg-12 space"></div>
                                             <div class="col-lg-12 fas fa-calendar-check dodger side-header" title="Date Of Birth"></div>
                                             <div class="col-lg-12" title="Date Of Birth">
-                                                <input class="inputs text-center dodger side-content" type='date' name='dob' required/>
+                                                <input class="inputs text-center dodger side-content" onclick="restrict_max()" type='date' name='dob' id="dateid" value="{{placement.date|date:'Y-m-d' }}" required/>
                                             </div>   
                                             <div class="col-lg-12 space"></div>
                                             <div class="col-lg-12 fas fa-phone dodger side-header" title="Contact Number"></div>

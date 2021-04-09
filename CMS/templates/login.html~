@@ -16,14 +16,25 @@
         
     <div class="container-fluid" >
     {% for message in messages %}
-        <div class="row text-center">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-10 alert alert-success alert-dismissible" style="overflow:hide">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Message!</strong> {{message}}.
-            </div>  
-            <div class="col-lg-1"></div>
-        </div>
+        {% if warning == True %}
+            <div class="row text-center">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10 alert alert-danger alert-dismissible" style="overflow:hide">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Message!</strong> {{message}}.
+                </div>  
+                <div class="col-lg-1"></div>
+            </div>
+        {% else %}
+            <div class="row text-center">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10 alert alert-success alert-dismissible" style="overflow:hide">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Message!</strong> {{message}}.
+                </div>  
+                <div class="col-lg-1"></div>
+            </div>
+        {% endif %}
     {% endfor %}
     </div>
     
@@ -70,7 +81,7 @@
                                             </div>
                                             <div class="col-lg-12 space-sm"></div>
                                             <div class="col-lg-12">
-                                                <h2 class="side-header text-center"><a href="{% url 'register' %}">Forgot Password</a></h2>
+                                                <h2 class="side-header text-center"><a href="{% url 'forgot' %}">Forgot Password</a></h2>
                                             </div>                                           
                                         </div>
                                     </form>
@@ -85,6 +96,7 @@
             </div>
         </div>
 
+    <div class="space"></div>
     </main>
 
 {% endblock %}

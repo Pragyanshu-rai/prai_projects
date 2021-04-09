@@ -25,6 +25,30 @@
 			</header>
             
             <hr />
+        
+    <div class="container-fluid" >
+    {% for message in messages %}
+        {% if warning == True %}
+            <div class="row text-center">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10 alert alert-danger alert-dismissible" style="overflow:hide">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Warning! </strong> {{message}}.
+                </div>  
+                <div class="col-lg-1"></div>
+            </div>
+        {% else %}
+            <div class="row text-center">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10 alert alert-success alert-dismissible" style="overflow:hide">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Message! </strong> {{message}}.
+                </div>  
+                <div class="col-lg-1"></div>
+            </div>
+        {% endif %}
+    {% endfor %}
+    </div>
 			
             <div class="main-section">
 				<div class="row">
@@ -44,13 +68,13 @@
                                 <li>Tracking patient upcoming appointments.</li>
                                 <br />
                                 <li><h5><b>For Patients</b></h5></li>
-                                <li>No need to go to the clinic and stand in long lines.</li>
+                                <li>No need to go to the clinic and stand in long queue.</li>
                                 <li>Online prescription saved in the database and can be accessed anytime.</li>
                                 <li>Past consultations are saved in patient record and dashboard.</li>
                                 <li>Book an appointment from anywhere.</li>
                             </ul>
                             <br />
-							<a href="{% url 'doctors' %}" class="btn btn-primary">Book Now !</a>
+							<a href="{% url 'profile' %}" class="btn btn-primary"><i class="fa fa-heartbeat"></i> Book Now !</a>
 						</div>
 					</div>
 					<div class="col-lg-1">
