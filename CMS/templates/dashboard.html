@@ -2,6 +2,13 @@
 
 {% load static %}
 
+            {% block breadcrumbs %}
+                {% if user.is_authenticated %}
+                <li class="breadcrumb-item"><a href="{% url 'profile' %}">Profile</a></li>
+                <li class="breadcrumb-item">Dashboard</li>
+                {% endif %}
+            {% endblock %}
+    
 {% block main_block %}
 
    <main class="main-body">
@@ -26,7 +33,7 @@
                         <div class="card pointer">
                             <img src="{% static 'img/pastconsult.svg' %}" class="card-img-top gradient" height="300px;"/>
                         <div class="card-body">
-                            <a href="{% url 'pastconsult' %}" class="btn btn-primary btn-lg"><i class="fa fa-heartbeat"></i> Past Consultations </a>
+                            <a href="{% url 'pastconsult' %}" class="btn btn-primary btn-lg"><i class="fa fa-heartbeat"></i> Past Consultations</a>
                         </div>
                         </div>
                     </div>
@@ -34,7 +41,7 @@
                         <div class="card pointer">
                             <img src="{% static 'img/pastbook.svg' %}" class="card-img-top gradient" height="300px;"/>
                         <div class="card-body">
-                            <a href="{% url 'pastbooking' %}" class="btn btn-primary btn-lg"><i class="fa fa-heartbeat"></i> Past Bookings </a>
+                            <a href="{% url 'pastbooking' %}" class="btn btn-primary btn-lg"><i class="fa fa-heartbeat"></i> Past Appointments</a>
                         </div>
                         </div>
                     </div>
@@ -42,21 +49,33 @@
                         <div class="card pointer">
                             <img src="{% static 'img/activebook.svg' %}" class="card-img-top gradient" height="300px;"/>
                         <div class="card-body">
-                            <a href="{% url 'activebooking' %}" class="btn btn-primary btn-lg"><i class="fa fa-heartbeat"></i> Active Bookings </a>
+                            <a href="{% url 'activebooking' %}" class="btn btn-primary btn-lg"><i class="fa fa-heartbeat"></i> Active Appointments</a>
                         </div>
                         </div>
                     </div>
                 <div class="col-lg-4">
+                    <div class="card pointer">
+                        <img src="{% static 'img/lab.svg' %}" class="card-img-top gradient" height="300px;"/>
+                    <div class="card-body">
+                        <a href="{% url 'report' %}" class="btn btn-primary btn-lg"><i class="fa fa-heartbeat"></i> Lab Reports</a>
+                    </div>
+                    </div>
                 </div>
-                    <div class="col-lg-4">
-                        <div class="card pointer">
-                            <img src="{% static 'img/doctors.svg' %}" class="card-img-top gradient" height="300px;"/>
-                        <div class="card-body">
-                            <a href="{% url 'doctors' %}" class="btn btn-primary btn-lg"><i class="fa fa-heartbeat"></i> Our Doctors </a>
-                        </div>
-                        </div>
-                    </div>
                 <div class="col-lg-4">
+                    <div class="card pointer">
+                        <img src="{% static 'img/doctor.svg' %}" class="card-img-top gradient" height="300px;"/>
+                    <div class="card-body">
+                        <a href="{% url 'doctors' %}" class="btn btn-primary btn-lg"><i class="fa fa-heartbeat"></i> Our Doctors</a>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card pointer">
+                        <img src="{% static 'img/pharmacy.svg' %}" class="card-img-top gradient" height="300px;"/>
+                    <div class="card-body">
+                        <a href="{% url 'doctors' %}" class="btn btn-primary btn-lg disabled"><i class="fa fa-heartbeat"></i> Online Pharmacy</a>
+                    </div>
+                    </div>
                 </div>
             </div>
     </main>

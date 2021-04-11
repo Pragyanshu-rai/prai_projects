@@ -2,6 +2,16 @@
 
 {% load static %}
 
+            {% block breadcrumbs %}
+                {% if user.is_authenticated %}
+                <li class="breadcrumb-item"><a href="{% url 'profile' %}">Profile</a></li>
+                <li class="breadcrumb-item">About-me</li>
+                {% else %}
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item">About-me</li>
+                {% endif %}
+            {% endblock %}
+    
 {% block main_block %}
    
     <main class="main-body">

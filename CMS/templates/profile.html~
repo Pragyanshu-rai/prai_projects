@@ -2,6 +2,14 @@
 
 {% load static %}
 
+
+            {% block breadcrumbs %}
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                {% endif %}
+            {% endblock %}
+    
+
 {% block main_block %}
 
    <main class="main-body">
@@ -20,19 +28,6 @@
             
         <hr />
         
-    <div class="container-fluid" >
-    {% for message in messages %}
-            <div class="row text-center">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-10 alert alert-success alert-dismissible" style="overflow:hide">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Message!</strong> {{message}}.
-                </div>  
-                <div class="col-lg-1"></div>
-            </div>
-    {% endfor %}
-    </div>
-        
 		<div class="container-fluid">
             <div class="row">
                 <div class="col-lg-4">
@@ -48,7 +43,7 @@
                             <h2 class="card-title pointer" ><b>{{user.first_name}}</b></h2>
                             <h4 class="card-text bg-fade pointer" >{{age}}</h4>
                             <p class="card-text bio pointer" >{{gender}}</p>
-                            <p class="card-text bio pointer" ><b>{{user.dob}}</b></p>
+                            <p class="card-text bio pointer" ><b>{{dob}}</b></p>
                             <p class="card-text bio pointer" >{{address}}</p>
                             <p class="card-text bio pointer" ><b>(+91) {{number}}</b></p>
                         </div>

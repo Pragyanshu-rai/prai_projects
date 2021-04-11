@@ -25,8 +25,8 @@ This template belongs to -
 Pragyanshu Rai
 
 -->
-<body onload="show_date()"> 
-    <nav class="navbar navbar-expand-md">
+<body onload="main();">
+    <nav class="navbar navbar-expand-sm">
         <a href="{% url 'home' %}" class="navbar-brand brand-name"><h1 style="color:white"><strong>CMS</strong></h1></a>
             <ul class="navbar-nav list-unstyled justify-content-end">
                 {% if user.is_authenticated %}
@@ -44,7 +44,36 @@ Pragyanshu Rai
         <div class="header">
             <img src="{% static 'img/CMS_dodgerblue.png' %}" width="200px;" class=" cms_logo " />
         </div>
-	</div>
+	</div>   
+    <div class="full-width">
+        <ol class="breadcrumb">
+            {% block breadcrumbs %}
+            {% endblock %}
+        </ol>    
+    </div>
+    <div class="container-fluid" >
+    {% for message in messages %}
+        {% if warning == True %}
+            <div class="row text-center">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10 alert alert-danger alert-dismissible" style="overflow:hide">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Warning! </strong> {{message}}.
+                </div>  
+                <div class="col-lg-1"></div>
+            </div>
+        {% else %}
+            <div class="row text-center">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10 alert alert-success alert-dismissible" style="overflow:hide">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Message! </strong> {{message}}.
+                </div>  
+                <div class="col-lg-1"></div>
+            </div>
+        {% endif %}
+    {% endfor %}
+    </div>
         
     {% block main_block %}
         

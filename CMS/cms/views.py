@@ -97,7 +97,7 @@ def pastconsult(request):
         
         return render(request, 'pastconsult.html', stuff)
     
-    return redirect('login')
+    return render(request, 'forbid.html', stuff)
 
 def dashboard(request):
     
@@ -109,7 +109,7 @@ def dashboard(request):
         
         return render(request, 'dashboard.html', stuff)
     
-    return redirect('login')
+    return render(request, 'forbid.html', stuff)
 
 def pastbooking(request):
     
@@ -117,13 +117,17 @@ def pastbooking(request):
     
     if request.user.is_authenticated == True:
         
-        contact = Contact.objects.get(user = request.user)
+        check_bookings(datetime.date.today())
         
-        stuff['records'] = Details.objects.filter(contact=contact)
+        stuff['bookings'] = History.objects.filter(patient_id = request.user.id)
         
-        return render(request, 'pastconsult.html', stuff)
+        stuff['page'] = "Past Appointments"
+        
+        stuff['line'] = "All your past appointments"
+        
+        return render(request, 'active_or_pastbooking.html', stuff)
     
-    return redirect('login')
+    return render(request, 'forbid.html', stuff)
 
 def activebooking(request):
     
@@ -131,13 +135,47 @@ def activebooking(request):
     
     if request.user.is_authenticated == True:
         
+        check_bookings(datetime.date.today())
+        
+        stuff['bookings'] = Booking.objects.filter(user_id = request.user.id)
+        
+        stuff['page'] = "Active Appointments"
+        
+        stuff['line'] = "All your pending or active appointments"
+        
+        if request.method == "POST":
+            
+            checks = request.POST.getlist('book_no')
+            
+            if len(checks) > 0: 
+                for check in checks:
+                    res = cancel_booking(check)
+                if res != "oops":
+                    stuff['warning'] = False
+                    if len(checks) == 1:
+                        messages.info(request, " Appointment Canceled")
+                    else:
+                        messages.info(request, " Appointments Canceled")
+            
+            return redirect('dashboard')
+        
+        return render(request, 'active_or_pastbooking.html', stuff)
+    
+    return render(request, 'forbid.html', stuff)
+
+def report(request):
+    
+    global stuff
+    
+    if request.user.is_authenticated == True:
+        
         contact = Contact.objects.get(user = request.user)
         
-        stuff['records'] = Details.objects.filter(contact=contact)
+        stuff['reports'] = Reports.objects.filter(contact=contact)
         
-        return render(request, 'pastconsult.html', stuff)
+        return render(request, 'reports.html', stuff)
     
-    return redirect('login')
+    return render(request, 'forbid.html', stuff)
 
 def doctors(request):
     
@@ -171,9 +209,7 @@ def booking(request):
         
         if doc == None:
             
-            stuff['doctors'] = Doctor.objects.all()
-            
-            stuff['doctor'] = stuff['doctors'][0]
+            return redirect('doctors')
         
         print(stuff['doctor'].id)
         
@@ -183,9 +219,16 @@ def booking(request):
             
             slot = request.POST['slot']
             
-            if has_duplicate(date, slot, stuff['doctor'].id) == True:
+            print(slot)
+            
+            result = has_duplicate(date, slot, stuff['doctor'].id, request.user.id)
+            
+            if result != "none":
                 
-                messages.info(request, "This Slot Is Not Available!")
+                if result == "Doc":
+                    messages.info(request, "This Slot Is Not Available!")
+                else :
+                    messages.info(request, "You Already Have An Appointment In This Slot And Date!")
                 
                 stuff['warning'] = True
                 
@@ -209,7 +252,7 @@ def booking(request):
             
             print(stuff)
             
-            return redirect('profile')
+            return redirect('doctors')#render(request, 'booking.html', stuff)
         
         return render(request, 'booking.html', stuff)
     
@@ -363,7 +406,21 @@ def forgot(request):
         
         print(otp_otp)
         
-        msg="""This is your otp:- """+str(otp_otp)+""" please do not share your otp with anyone.\nThis is a system genrated message, DO NOT REPLY!"""
+        msg="""Dear Customer,
+
+               Thank you for being associated with our company (mention company details).
+
+                You have requested for password change for which One Time Password (OTP):- """+str(otp_otp)+""" has been generated at """+str(datetime.datetime.now()).split(".")[0]+""".
+
+                In case you have not requested for password change, please call our Customer Care. You can also write an email at noreply.services.2001@gmail.com.
+
+            Disclaimer
+
+            Our executives never ask you about one time password. We recommend you do not share this with anyone to prevent fraudulent transactions.
+            
+            Sincerely,
+
+            Clinic Management System (CMS)"""
         
         send_email("OTP", msg, email)
         
@@ -382,6 +439,10 @@ def change(request, uid=-1):
     if stuff['change'] == True :
         
         stuff['change'] = False
+        
+        user = User.objects.get(id=uid)
+        
+        stuff['name'] = user.first_name
         
         return render(request, 'change.html', stuff)
     

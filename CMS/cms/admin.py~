@@ -12,4 +12,6 @@ admin.site.register(Booking)
 
 admin.site.register(Details)
 
-#admin.site.register(history)
+admin.site.register(history)
+
+admin.site.register(Reports)

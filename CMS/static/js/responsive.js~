@@ -1,4 +1,11 @@
 
+// functions to be called as the page loads
+function main()
+{
+    show_date();
+    select();
+}
+
 // to restrict the date input max attribute to today
 function restrict_max()
 {
@@ -49,5 +56,24 @@ function page_top()
 {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+}
+
+//for table checkbox
+function select()
+{
+    var ch_box = document.getElementsByClassName('checkbox');
+    for(i=0; i<ch_box.length; i++)
+    {
+        if(ch_box[i].checked == true)
+        {
+            var tr = document.getElementsByTagName('tr')[i+1];
+            tr.classList.add("table-danger");
+        }
+        else
+        {
+            var tr = document.getElementsByTagName('tr')[i+1];
+            tr.classList.remove("table-danger");
+        }    
+    }
 }
 

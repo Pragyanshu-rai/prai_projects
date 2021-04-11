@@ -2,6 +2,14 @@
 
 {% load static %}
 
+            {% block breadcrumbs %}
+                {% if user.is_authenticated %}
+                <li class="breadcrumb-item"><a href="{% url 'profile' %}">Profile</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item">Doctors</li>
+                {% endif %}
+            {% endblock %}
+    
 {% block main_block %}
 
    <main class="main-body">
@@ -21,9 +29,9 @@
                     <div class="col-lg-3">
                         <div class="card pointer">
                         {% if doctor.gender == "Male" %}
-                            <img src="{% static 'img/male_avatar.svg' %}" class="card-img-top gradient" height="300px;"/>
+                            <img src="{% static 'img/doctor_male.svg' %}" class="card-img-top gradient" height="300px;"/>
                         {% else %}
-                            <img src="{% static 'img/female_avatar.svg' %}" class="card-img-top gradient" height="300px;"/>
+                            <img src="{% static 'img/doctor_female.svg' %}" class="card-img-top gradient" height="300px;"/>
                         {% endif %}
                         <div class="card-body">
                             <h2 class="card-title pointer" ><b>{{doctor.name}}</b></h2>

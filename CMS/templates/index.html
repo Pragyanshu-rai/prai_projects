@@ -2,6 +2,13 @@
 
 {% load static %}
 
+            {% block breadcrumbs %}
+                {% if user.is_authenticated %}
+                <li class="breadcrumb-item"><a href="{% url 'profile' %}">Profile</a></li>
+                {% else %}
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                {% endif %}
+            {% endblock %}
 
         {% block main_block %}
         
@@ -25,30 +32,6 @@
 			</header>
             
             <hr />
-        
-    <div class="container-fluid" >
-    {% for message in messages %}
-        {% if warning == True %}
-            <div class="row text-center">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-10 alert alert-danger alert-dismissible" style="overflow:hide">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Warning! </strong> {{message}}.
-                </div>  
-                <div class="col-lg-1"></div>
-            </div>
-        {% else %}
-            <div class="row text-center">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-10 alert alert-success alert-dismissible" style="overflow:hide">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Message! </strong> {{message}}.
-                </div>  
-                <div class="col-lg-1"></div>
-            </div>
-        {% endif %}
-    {% endfor %}
-    </div>
 			
             <div class="main-section">
 				<div class="row">

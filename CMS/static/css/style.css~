@@ -121,8 +121,25 @@ html{
     }
 }
 
+.add-btm-margin{
+    margin-bottom : 20px;
+}
+
+.modal-header{
+    display: block;
+}
+
 .dodger{
-    color : dodgerblue;
+    color : #1e90ff;
+}
+
+.dodger-bg{
+    background :#1e90ff;
+    color : #ffffff;
+}
+
+.full-width{
+    width : 100%;
 }
 
 .welcome-section{
@@ -142,8 +159,9 @@ html{
 
 .card{
     box-shadow : 0 4px 8px 0 #666;
-    transition: 0.3s;
     margin-bottom : 20px;
+    height : 100%;
+    transition: 0.3s;
 }
 
 .super-card:hover{
@@ -204,8 +222,7 @@ html{
     bottom : 60px;
     right : 10px;
     border : none;
-    background : #1e90ff;/*rgba(0, 0, 0, 0);*/
-    color : white;
+    background : rgba(0, 0, 0, 0);
     display : none;
 }
 
