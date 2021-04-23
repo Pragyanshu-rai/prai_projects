@@ -1,0 +1,52 @@
+{% extends 'cms/base.html' %}
+
+{% load static %}
+
+            {% block breadcrumbs %}
+                {% if user.is_authenticated %}
+                <li class="breadcrumb-item"><a href="{% url 'profile' %}">Profile</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item">Doctors</li>
+                {% endif %}
+            {% endblock %}
+    
+{% block main_block %}
+
+   <main class="main-body">
+	    <header class="row welcome-section">    
+            <div class="col-lg-12 text-center contain">
+				<h1><strong>Our Doctors</strong></h1>
+            </div>
+	    </header>
+            
+        <hr />
+        <form class="text-center" action="" method="POST">
+                                        
+        {% csrf_token %}
+		<div class="container-fluid">
+            <div class="row">
+                {% for doctor in doctors %}
+                    <div class="col-lg-3 add-btm-margin">
+                        <div class="card pointer">
+                        {% if doctor.gender == "Male" %}
+                            <img src="{% static 'img/doctor_male.svg' %}" class="card-img-top gradient" height="300px;"/>
+                        {% else %}
+                            <img src="{% static 'img/doctor_female.svg' %}" class="card-img-top gradient" height="300px;"/>
+                        {% endif %}
+                        <div class="card-body">
+                            <h2 class="card-title pointer" ><b>{{doctor.name}}</b></h2>
+                            <h4 class="card-text bg-fade pointer" ><b>Age:</b> {{doctor.age}}</h4>
+                            <p class="card-text bio pointer" ><b>Experience:</b> {{doctor.experience}} years</p>
+                            <p class="card-text bio pointer" ><b>Domain: {{doctor.domain}}</b></p>
+                            <p class="card-text bio pointer" ><b>Phone: (+91) {{doctor.office_number}}</b></p>
+                            <button type="submit" name="booking" value="{{doctor.id}}" class="card-link btn btn-primary" ><i class="fa fa-heartbeat"></i> <b>Book Appointment</b></button>
+                        </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </form>
+        
+    </main>
+
+{% endblock %}

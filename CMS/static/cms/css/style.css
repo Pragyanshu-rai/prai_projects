@@ -1,0 +1,319 @@
+*:focus{
+    outline : none;
+}
+
+a:hover{
+    text-decoration : none;
+}
+
+html{
+    /*for smooth scrolling*/
+    scroll-behavior : smooth;
+}
+
+.otp{
+    width : 40%;
+}
+
+.big{
+    font-size : 60px;
+}
+
+.space{
+    height : 40px;
+}
+
+.contact{
+    padding : 20px 20px;
+}
+
+.navbar{
+    padding : 0;
+    margin-top : -15px;
+    margin-bottom : 0;
+    background : dodgerblue;
+}
+
+.navbar-brand{
+    margin-left : 10px;
+    /*cursor : not-allowed;*/
+}
+
+.list-inline{
+    margin-bottom : 0;
+    cursor : pointer;
+}
+
+.navbar-nav{
+    width:100%;
+}
+
+.nav-link a{
+    text-decoration : none;
+    cursor : pointer;
+    color : white;
+    margin-left : 20px;
+    margin-right : 20px;
+    text-align : center;
+}
+
+.nav-link a h3{    
+    border-bottom : 2px solid dodgerblue;
+    transition : 0.3s;
+}
+
+.nav-link a h3:hover{
+    border-bottom-color : white;
+}
+
+.side-header{
+    font-size : 30px;
+}
+
+.side-content{
+    font-size : 20px;
+}
+
+.top-align{
+    top:50%;
+}
+
+.inputs{
+    border : 2px solid dodgerblue;
+    border-radius : 50px;
+}
+
+.address-box{
+    border : 2px solid dodgerblue;
+    border-radius : 10px;
+}
+
+.container{
+    overflow : auto;
+    padding : 0;
+    width : 100%;
+    background : white;
+}
+
+.description-box{
+    margin-top: 10%;
+}
+
+.header{
+    text-align : center;
+}
+
+.page-header{ 
+    margin-top : -10px;
+    width : 100%;
+    background : dodgerblue;
+    color : white;
+}
+
+.cms_logo{
+    margin-bottom : 10px; 
+    animation : 1.5s logo_animate;
+}
+
+@keyframes logo_animate{
+    50%{
+        width : 50px;
+    }
+}
+
+.add-btm-margin{
+    margin-bottom : 20px;
+}
+
+.dodger{
+    color : #1e90ff;
+}
+
+.dodger-bg{
+    background :#1e90ff;
+    color : #ffffff;
+}
+
+.full-width{
+    width : 100%;
+}
+
+.welcome-section{
+    margin-left : 1.5%;
+    margin-right : 1.5%;
+    width : 97%;
+    margin-bottom : 10px;
+    margin-top : 10px;
+}
+
+.contain{
+}
+
+.col-lg-4{
+    margin-bottom : 20px;
+}
+
+.card{
+    box-shadow : 0 4px 8px 0 #666;
+    margin-bottom : 20px;
+    height : 100%;
+    transition: 0.3s;
+}
+
+.super-card:hover{
+    cursor : pointer;
+    box-shadow : 0 8px 16px 0 #666;
+}
+
+.pointer{
+    cursor : pointer;
+}
+
+.login{
+    border-radius : 20px;
+}
+
+.signup{
+    
+}
+
+.bio{
+    font-size : 20px;
+}
+
+.bg-fade{
+    color : lightgray;
+}
+
+.text-center{
+    text-align : center;
+}
+
+.gradient{
+    background-image : linear-gradient(white, dodgerblue);
+}
+
+.main-content{
+    margin : 10px;
+    font-size : 20px;
+}
+
+.main-body{
+    margin-bottom : 10px;
+}
+
+.main-section{
+    margin-left : 1.5%;
+    margin-left : 1.5%;
+    width : 97%;
+    margin-bottom : 20px;
+}
+
+.description-figure{
+    text-align : center;
+}
+
+.top-btn{
+    position : fixed;
+    bottom : 60px;
+    right : 10px;
+    border : none;
+    border-radius : 10px;
+    background : rgba(0, 0, 0, 0.3);
+    display : none;
+}
+
+.kill-margin{
+    margin : 0;
+}
+
+.kill-padding{
+    padding : 0;
+}
+
+.kill-padding-left{
+    padding-left : 0;
+}
+
+.kill-padding-right{
+    padding-right : 0;
+}
+
+.white{
+    background : #ffffff;
+    color : #1e90ff ;
+}
+
+.red{
+    background : #ff3d49;
+    color : #ffffff ;
+}
+
+.green{
+    background : #8bd8bd;
+    color : #ffffff ;    
+}
+
+.footer{
+    font-size : large;
+    padding : 4px;
+    background : lightgray;  
+}
+
+.footer-body{
+    margin-top : 10px;
+}
+
+.width-max{
+    max-width : 100%;        
+}
+
+.space-sm{
+    height : 15px;
+}
+/*
+#pass{
+    width : 60%;
+}
+*/
+@media(max-width:760px)
+{
+    /* small screens will not have fixed bottom */
+    .fixed-bottom{
+        position : relative;    
+    }
+    
+    .space{
+        height : 10px;    
+    }
+
+    .navbar{        
+        margin-top : 0;
+    }
+    
+    .page-header{
+        display:none;    
+    }
+    
+    .nav-link a h3{
+        border-bottom : 0;
+    }
+    
+    .nav-link:hover{
+        cursor : pointer;
+        background : rgba(10, 124, 235);
+    }
+    
+    /* brand name disappears in small screens */
+    .brand-name{
+        display:none;    
+    }
+    
+    .description-box{
+        margin-top: 10px;
+    }
+    
+    .top-btn{
+        bottom : 85px;    
+    }
+}

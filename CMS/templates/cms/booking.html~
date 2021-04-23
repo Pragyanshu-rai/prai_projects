@@ -1,0 +1,88 @@
+{% extends 'cms/base.html' %}
+
+{% load static %}
+
+            {% block breadcrumbs %}
+                {% if user.is_authenticated %}
+                <li class="breadcrumb-item"><a href="{% url 'profile' %}">Profile</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'doctors' %}">Doctors</a></li>
+                <li class="breadcrumb-item">Booking</li>
+                {% endif %}
+            {% endblock %}
+    
+{% block main_block %}
+
+   <main class="main-body">
+    
+    <div class="space"></div>
+    
+    <div class="container-fluid" >
+    <div class="space"></div>
+        
+		<div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card pointer">
+                        {% if doctor.gender == "Male" %}
+                            <img src="{% static 'img/doctor_male.svg' %}" class="card-img-top gradient" height="300px;"/>
+                        {% else %}
+                            <img src="{% static 'img/doctor_female.svg' %}" class="card-img-top gradient" height="300px;"/>
+                        {% endif %}
+                        <div class="card-body">
+                            <h2 class="card-title pointer" ><b></b></h2>
+                            <h2 class="card-title pointer" ><b>{{doctor.name}}</b></h2>
+                            <h4 class="card-text bg-fade pointer" ><b>Age:</b> {{doctor.age}}</h4>
+                            <p class="card-text bio pointer" ><b>Experience:</b> {{doctor.experience}} years</p>
+                            <p class="card-text bio pointer" ><b>Domain: {{doctor.domain}}</b></p>
+                            <p class="card-text bio pointer" ><b>Phone: (+91) {{doctor.office_number}}</b></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 text-center">
+                    <header class="row welcome-section">    
+                        <div class="col-lg-12 text-center contain">
+			                <h1><strong>Book An Appointment</strong></h1>       
+                        </div>
+                        <div class="col-lg-1">
+                        </div>
+                        <div class="col-lg-10 text-center">
+		                    <p class="main-content dodger"><b>Today: <span id="date"></span></b></p>
+                        </div>
+                        <div class="col-lg-1">
+                        </div>
+	                </header>
+                    <hr />
+                    <form class="text-center" method="POST" >
+                        {% csrf_token %}
+                        <div class="col-lg-12 space"></div>
+                        <div class="col-lg-12 side-header" title="Select Date">
+                            <label for="dob"><b>Select Date</b></label>
+                        </div>
+                        <div class="col-lg-12 space"></div>
+                        <div class="col-lg-12" title="Select Date">
+                            <input class="inputs text-center dodger side-content" onclick="restrict_min()" type='date' name='date' id="slotdate" value="{{placement.date|date:'Y-m-d' }}" required/>
+                        </div>   
+                        <div class="col-lg-12 space"></div>
+                        <div class="col-lg-12 side-header" title="Time Slot">
+                            <label for="gender"><b>Time Slot</b></label>
+                        </div>
+                        <div class="col-lg-12 space"></div>
+                        <div class="col-lg-12" title="Time Slot">
+                            <div class="container-fluid">
+                                <div class="row text-center">
+                                {% for slot in slots %}
+                                    <div class="col-md-3" style="margin-bottom:10px">
+                                        <button type="submit" class="btn btn-lg btn-primary" value="{{slot}}" name="slot">{{slot}}</button>
+                                    </div>
+                                {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        
+    </main>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'cms/base.html' %}
+
+{% load static %}
+
+            {% block breadcrumbs %}
+                {% if user.is_authenticated %}
+                <li class="breadcrumb-item"><a href="{% url 'profile' %}">Profile</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item">Reports</li>
+                {% endif %}
+            {% endblock %}
+    
+{% block main_block %}
+
+   <main class="main-body">
+	    <header class="row welcome-section">    
+            <div class="col-lg-12 text-center contain">
+				<h1><strong>Hey {{user.first_name}}</strong></h1>
+            </div>
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-10 text-center">
+		    <p class="main-content">Lab Reports</p>
+            </div>
+            <div class="col-lg-1">
+            </div>
+	    </header>
+            
+        <hr />
+        
+		<div class="container-fluid">
+            <div class="row text-center">
+                {% if reports|length < 1 %}
+                    <div class="col-lg-12">
+                        <div class="card pointer">
+                            <img src="{% static 'cms/img/nodata.svg' %}" class="card-img-top gradient" height="400px"/>
+                            <div class="card-body">
+                                <p class="card-title pointer side-content" ><b>No Reports Found!</b></p>
+                            </div>
+                        </div>
+                    </div>  
+                {% else %}
+                {% for report in reports %}
+                    <div class="col-lg-4">
+                        <div class="card pointer">
+                            <img src="{% static report.report_img.url %}" class="card-img-top" height="300px;"/>
+                        <div class="card-body">
+                            <h2 class="card-title pointer" ><b>Lab: </b>{{report.lab}}</h2>
+                            <p class="card-text bio pointer" ><b>Referred by: </b>{{report.doctor.name}}</p>
+                            <p class="card-text bio pointer" ><b>Date: </b>{{report.date_of_report}}</p>
+                            {% if report.report_status == False %}
+                            <p class="card-text bio pointer" ><b>status: </b>Pending</p>
+                            {% else %}
+                            <p class="card-text bio pointer" ><b>status: </b>Generated</p>
+                            <p class="card-text bio pointer" ><b><a href="{% static report.report_img.url %}" class="fa fa-cloud-download" download></a> Download Report</b></p>
+                            {% endif %}
+                        </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+    <div class="space"></div>
+        
+    </main>
+
+{% endblock %}
+

@@ -1,0 +1,42 @@
+{% extends 'cms/base.html' %}
+
+{% load static %}
+
+{% block main_block %}
+
+   <main class="main-body">
+	    <header class="row welcome-section">    
+            <div class="col-lg-12 text-center contain">
+				<h1><strong>Record Book</strong></h1>
+            </div>
+	    </header>
+            
+        <hr />
+        
+		<div class="container-fluid">
+            <div class="row text-center">
+                {% for doctor in doctors %}
+                    <div class="col-lg-4">
+                        <div class="card pointer">
+                        {% if doctor.gender == "Male" %}
+                            <img src="{% static 'img/male_avatar.svg' %}" class="card-img-top gradient" height="400px;"/>
+                        {% else %}
+                            <img src="{% static 'img/female_avatar.svg' %}" class="card-img-top gradient" height="400px;"/>
+                        {% endif %}
+                        <div class="card-body">
+                            <h2 class="card-title pointer" ><b>{{doctor.name}}</b></h2>
+                            <h4 class="card-text bg-fade pointer" ><b>Age:</b> {{doctor.age}}</h4>
+                            <p class="card-text bio pointer" ><b>Experience:</b> {{doctor.experience}} years</p>
+                            <p class="card-text bio pointer" ><b>Domain: {{doctor.domain}}</b></p>
+                            <p class="card-text bio pointer" ><b>Phone: (+91) {{doctor.office_number}}</b></p>
+                            <a href="#" class="card-link btn btn-primary" ><b>Book Appointment</b></a>
+                        </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+    <div class="space"></div>
+        
+    </main>
+
+{% endblock %}

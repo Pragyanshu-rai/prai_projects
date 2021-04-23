@@ -1,0 +1,104 @@
+{% extends 'cms/base.html' %}
+
+{% load static %}
+
+{% block main_block %}
+
+    <main class="main-body">
+        
+        <header class="row welcome-section">    
+            <div class="col-lg-12 text-center contain">
+				<h1><strong>Create Your Account For Free!!</strong></h1>
+            </div>
+	    </header>
+            
+        <hr />
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-1">
+                </div>
+                <div class="col-lg-10">
+                    <div class="card text-center login">
+                        <div class="card-body kill-padding">
+                            <div class="row">
+                                <div class="col-lg-6 ">
+                                    <img src="{% static 'cms/img/register.svg' %}" class="card-img-top gradient login" height="101.8%;"/>
+                                </div>
+                                <div class="col-lg-6 text-center ">
+                                    <h2 class="card-title"></h2>
+                                    <h1 class="card-title"><b><span class="dodger">Create Account</span></b></h1>
+                                    <form class="text-center" action="" method="POST">
+                                        
+                                        {% csrf_token %}
+                                        <div class="row" data-toggle="tooltip" dataplacement="right">  
+                                            <div class="col-lg-12 space"></div>
+                                            <div class="col-lg-12 fas fa-user dodger side-header" title="Name"></div>
+                                            <div class="col-lg-12" title="Name">
+                                                <input class="inputs text-center dodger side-content" type='text' name='name' placeholder="Name" required/>
+                                            </div>
+                                            <div class="col-lg-12 space"></div> 
+                                            <div class="col-lg-12 fas fa-envelope dodger side-header" title="Email"></div>
+                                            <div class="col-lg-12" title="Email">
+                                                <input class="inputs text-center dodger side-content" type='email' name='email' placeholder="Email" pattern="^[a-z0-9]+@[a-z0-9]+.[a-z]{2,}$" required />
+                                            </div> 
+                                            <div class="col-lg-12 space"></div>
+                                            <div class="col-lg-12 fa fa-intersex dodger side-header" title="Gender"></div>
+                                            <div class="col-lg-12" title="Gender">
+                                                <select class="inputs text-center dodger side-header" name="gender">
+                                                    <option class="side-content" value="Male">Male</option>
+                                                    <option class="side-content" value="Female">Female</option>
+                                                    <option class="side-content" value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-12 space"></div>
+                                            <div class="col-lg-12 fas fa-calendar-check dodger side-header" title="Date Of Birth"></div>
+                                            <div class="col-lg-12" title="Date Of Birth">
+                                                <input class="inputs text-center dodger side-content" onclick="restrict_max()" type='date' name='dob' id="dateid" value="{{placement.date|date:'Y-m-d' }}" required/>
+                                            </div>   
+                                            <div class="col-lg-12 space"></div>
+                                            <div class="col-lg-12 fas fa-phone dodger side-header" title="Contact Number"></div>
+                                            <div class="col-lg-12" title="Contact Number">
+                                                <input class="inputs text-center dodger side-content" type='tel' name='contact' placeholder="Contact Number" pattern="^[0]{0,1}[6-9][0-9]{9}$" required/>
+                                            </div> 
+                                            <div class="col-lg-12 space"></div>
+                                            <div class="col-lg-12 fas fa-address-card dodger side-header" title="Address"></div>
+                                            <div class="col-lg-12" title="Address">
+                                                <textarea class="address-box dodger side-content" name='address' placeholder="Address" required/>
+    
+                                                </textarea>
+                                            </div> 
+                                            <div class="col-lg-12 space"></div> 
+                                            <div class="col-lg-12 fas fa-unlock dodger side-header pointer" title="Password" onclick="togglePassword()" id="lock"></div>
+                                            <div class="col-lg-12" title="Password">
+                                                <input class="inputs text-center dodger side-content" type='password' name='password' id="pass" placeholder="Password" oninput="checkPass()" pattern="^+[0-9]*[a-zA-Z]*[0-9]*[a-zA-Z]*{8,}$" required />
+                                            </div>
+                                            <div class="col-lg-12 space"></div>
+                                            <div class="col-lg-12 fas fa-lock dodger side-header" title="Confirm Password"></div>
+                                            <div class="col-lg-12" title="Confirm Password">
+                                                <input class="inputs text-center dodger side-content" type='password' name='confirm' id="conf" placeholder="Confirm Password" oninput="checkPass()" required/>
+                                            </div>
+                                            <div class="col-lg-12 space"></div> 
+                                            <div class="col-lg-12">
+                                                <input class="btn btn-primary side-content" type='submit' value="Create Account" />
+                                            </div>
+                                            <div class="col-lg-12 space-sm"></div>
+                                            <div class="col-lg-12">
+                                                <h2 class="side-header text-center">Already Registered? <a href="{% url 'login' %}">Login</a></h2>
+                                            </div>     
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-1">
+                </div>
+            </div>
+        </div>
+    <div class="space"></div>
+    </main>
+
+{% endblock %}
+

@@ -55,15 +55,15 @@ def home(request):
             
         stuff['warning'] = False
         
-        return render(request, 'profile.html', stuff)
+        return render(request, 'cms/profile.html', stuff)
     
-    return render(request, 'index.html', stuff);
+    return render(request, 'cms/index.html', stuff);
 
 def aboutme(request):
     
     global stuff
     
-    return render(request, 'about.html', stuff)
+    return render(request, 'cms/about.html', stuff)
 
 def profile(request):
     
@@ -81,7 +81,7 @@ def profile(request):
         
         stuff['age'] = age(to_date(str(contact.dob)))
             
-        return render(request, 'profile.html', stuff)
+        return render(request, 'cms/profile.html', stuff)
     
     return redirect('login')
 
@@ -95,9 +95,9 @@ def pastconsult(request):
         
         stuff['records'] = Details.objects.filter(contact=contact)
         
-        return render(request, 'pastconsult.html', stuff)
+        return render(request, 'cms/pastconsult.html', stuff)
     
-    return render(request, 'forbid.html', stuff)
+    return render(request, 'cms/forbid.html', stuff)
 
 def dashboard(request):
     
@@ -107,9 +107,9 @@ def dashboard(request):
         
         contact = Contact.objects.get(user = request.user)
         
-        return render(request, 'dashboard.html', stuff)
+        return render(request, 'cms/dashboard.html', stuff)
     
-    return render(request, 'forbid.html', stuff)
+    return render(request, 'cms/forbid.html', stuff)
 
 def pastbooking(request):
     
@@ -125,9 +125,9 @@ def pastbooking(request):
         
         stuff['line'] = "All your past appointments"
         
-        return render(request, 'active_or_pastbooking.html', stuff)
+        return render(request, 'cms/active_or_pastbooking.html', stuff)
     
-    return render(request, 'forbid.html', stuff)
+    return render(request, 'cms/forbid.html', stuff)
 
 def activebooking(request):
     
@@ -159,9 +159,9 @@ def activebooking(request):
             
             return redirect('dashboard')
         
-        return render(request, 'active_or_pastbooking.html', stuff)
+        return render(request, 'cms/active_or_pastbooking.html', stuff)
     
-    return render(request, 'forbid.html', stuff)
+    return render(request, 'cms/forbid.html', stuff)
 
 def report(request):
     
@@ -173,9 +173,9 @@ def report(request):
         
         stuff['reports'] = Reports.objects.filter(contact=contact)
         
-        return render(request, 'reports.html', stuff)
+        return render(request, 'cms/reports.html', stuff)
     
-    return render(request, 'forbid.html', stuff)
+    return render(request, 'cms/forbid.html', stuff)
 
 def doctors(request):
     
@@ -197,9 +197,9 @@ def doctors(request):
             
             return redirect('booking')
         
-        return render(request, 'doctors.html', stuff)
+        return render(request, 'cms/doctors.html', stuff)
     
-    return render(request, 'forbid.html', stuff)
+    return render(request, 'cms/forbid.html', stuff)
 
 def booking(request):
     
@@ -232,7 +232,7 @@ def booking(request):
                 
                 stuff['warning'] = True
                 
-                return render(request, 'booking.html', stuff)
+                return render(request, 'cms/booking.html', stuff)
             
             stuff['warning'] = False
             
@@ -254,9 +254,9 @@ def booking(request):
             
             return redirect('doctors')#render(request, 'booking.html', stuff)
         
-        return render(request, 'booking.html', stuff)
+        return render(request, 'cms/booking.html', stuff)
     
-    return render(request, 'forbid.html', stuff) 
+    return render(request, 'cms/forbid.html', stuff) 
 
 def login(request):
     
@@ -292,7 +292,7 @@ def login(request):
     
     else:
         
-        return render(request, 'login.html', stuff)
+        return render(request, 'cms/login.html', stuff)
 
 def register(request):
     
@@ -350,7 +350,7 @@ def register(request):
         return redirect("login")
     
     else:
-        return render(request, 'register.html', stuff)
+        return render(request, 'cms/register.html', stuff)
 
 def otp(request, uid=-1):
     
@@ -375,9 +375,9 @@ def otp(request, uid=-1):
             
             stuff['warning'] = True
             
-            return render(request, 'otp.html', stuff)
+            return render(request, 'cms/otp.html', stuff)
         
-    return render(request, 'otp.html', stuff)
+    return render(request, 'cms/otp.html', stuff)
 
 def forgot(request):
     
@@ -394,7 +394,7 @@ def forgot(request):
             
             stuff['warning'] = True
             
-            return render(request, 'forgot.html', stuff)
+            return render(request, 'cms/forgot.html', stuff)
             
         print("Email - ", user.email)
         
@@ -430,7 +430,7 @@ def forgot(request):
         
         return redirect('otp', uid=uid)
     
-    return render(request, 'forgot.html', stuff)
+    return render(request, 'cms/forgot.html', stuff)
 
 def change(request, uid=-1):
     
@@ -444,7 +444,7 @@ def change(request, uid=-1):
         
         stuff['name'] = user.first_name
         
-        return render(request, 'change.html', stuff)
+        return render(request, 'cms/change.html', stuff)
     
     if request.method == "POST" :
         
@@ -458,7 +458,7 @@ def change(request, uid=-1):
             
             stuff['warning'] = True
             
-            return render(request, 'change.html', stuff)
+            return render(request, 'cms/change.html', stuff)
         
         user = User.objects.get(pk=uid)
         
@@ -472,7 +472,7 @@ def change(request, uid=-1):
             
         return redirect('login')
     
-    return render(request, 'forbid.html', stuff)
+    return render(request, 'cms/forbid.html', stuff)
 
 def logout(request):
     

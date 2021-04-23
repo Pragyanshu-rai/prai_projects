@@ -1,0 +1,53 @@
+{% extends 'cms/base.html' %}
+
+{% load static %}
+
+{% block main_block %}
+
+    <main class="main-body">
+        
+        <header class="row welcome-section">    
+            <div class="col-lg-12 text-center contain">
+				<h1><strong>Forbidden Action!</strong></h1>
+            </div>
+            <meta http-equiv="refresh" content="3; {% url 'home' %}" />
+	    </header>
+            
+        <hr />
+        
+    <div class="container-fluid" >
+    {% for message in messages %}
+        {% if warning == False %}
+        <div class="row text-center">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10 alert alert-success" style="overflow:hide">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Message!</strong> {{message}}.
+            </div>  
+            <div class="col-lg-1"></div>
+        </div>
+        {% else %}
+        <div class="row text-center">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10 alert alert-danger" style="overflow:hide">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Warning! </strong> {{message}}.
+            </div>  
+            <div class="col-lg-1"></div>
+        </div>
+        {% endif %}
+    {% endfor %}
+    </div>
+    
+        <div class="container-fluid" >
+            <div class="row text-center">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                    <img class="img-sm" src="{% static 'cms/img/denied.svg' %}" width="100%">
+                </div>  
+                <div class="col-lg-2"></div>
+            </div>
+        </div>
+    
+    </main>
+{% endblock %}

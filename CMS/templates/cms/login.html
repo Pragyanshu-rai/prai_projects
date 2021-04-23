@@ -1,0 +1,79 @@
+{% extends 'cms/base.html' %}
+
+{% load static %}
+
+{% block main_block %}
+
+    <main class="main-body">
+        
+        <header class="row welcome-section">    
+            <div class="col-lg-12 text-center contain">
+				<h1><strong>Welcome to the login page</strong></h1>
+            </div>
+	    </header>
+            
+        <hr />
+    
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2">
+                </div>
+                <div class="col-lg-8">
+                    <div class="card text-center login">
+                        <div class="card-body kill-padding">
+                            <div class="row">
+                                <div class="col-lg-6 ">
+                                    <img src="{% static 'cms/img/login.svg' %}" class="card-img-top gradient login" height="103.3%"/>
+                                </div>
+                                <div class="col-lg-6 text-center ">
+                                    <h2 class="card-title"></h2>
+                                    <h1 class="card-title"><b><span class="dodger">Login</span></b></h1>
+                                    <form class="text-center" action="" method="POST">
+                                        
+                                        {% csrf_token %}
+                                        <div class="row" data-toggle="tooltip" dataplacement="right">
+                                            <div class="col-lg-12 space"></div> 
+                                            <div class="col-lg-12 fas fa-user dodger side-header" title="Name"></div>
+                                            <div class="col-lg-12" title="Name">
+                                                <input class="inputs text-center dodger side-content" type='text' name='name' placeholder="Name" required />
+                                            </div> 
+                                            <div class="col-lg-12 space"></div> 
+                                            <div class="col-lg-12 fas fa-envelope dodger side-header" title="Email"></div>
+                                            <div class="col-lg-12" title="Email">
+                                                <input class="inputs text-center dodger side-content" type='email' name='email' placeholder="Email" pattern="^[a-z0-9]+@[a-z0-9]+.[a-z]{2,}$" required />
+                                            </div> 
+                                            <div class="col-lg-12 space"></div> 
+                                            <div class="col-lg-12 fas fa-lock dodger side-header pointer" title="Password" onclick="togglePassword()" id="lock"></div>
+                                            <div class="col-lg-12" title="Password">
+                                                <input class="inputs text-center dodger side-content" type='password' name='password' id="pass" placeholder="Password" required />
+                                            </div>  
+                                            <div class="col-lg-12 space"></div> 
+                                            <div class="col-lg-12">
+                                                <input class="btn btn-primary side-content" type='submit' value="Login" />
+                                            </div>
+                                            <div class="col-lg-12 space-sm"></div>
+                                            <div class="col-lg-12">
+                                                <h2 class="side-header text-center">New here? why not <a href="{% url 'register' %}">Register</a></h2>
+                                            </div>
+                                            <div class="col-lg-12 space-sm"></div>
+                                            <div class="col-lg-12">
+                                                <h2 class="side-header text-center"><a href="{% url 'forgot' %}">Forgot Password</a></h2>
+                                            </div>                                           
+                                        </div>
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+        </div>
+
+    <div class="space"></div>
+    </main>
+
+{% endblock %}
+

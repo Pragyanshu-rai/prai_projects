@@ -1,0 +1,63 @@
+{% extends 'cms/base.html' %}
+
+{% load static %}
+
+            {% block breadcrumbs %}
+                {% if user.is_authenticated %}
+                <li class="breadcrumb-item"><a href="{% url 'profile' %}">Profile</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item">Past-consultation</li>
+                {% endif %}
+            {% endblock %}
+    
+{% block main_block %}
+
+   <main class="main-body">
+	    <header class="row welcome-section">    
+            <div class="col-lg-12 text-center contain">
+				<h1><strong>Hey {{user.first_name}}</strong></h1>
+            </div>
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-10 text-center">
+		    <p class="main-content">Your past consultations are here</p>
+            </div>
+            <div class="col-lg-1">
+            </div>
+	    </header>
+            
+        <hr />
+        
+		<div class="container-fluid">
+            <div class="row text-center">
+                {% if records|length < 1 %}
+                    <div class="col-lg-12">
+                        <div class="card pointer">
+                            <img src="{% static 'img/nodata.svg' %}" class="card-img-top gradient" height="400px"/>
+                            <div class="card-body">
+                                <p class="card-title pointer side-content" ><b>No Past Consultations!</b></p>
+                            </div>
+                        </div>
+                    </div>  
+                {% else %}
+                {% for record in records %}
+                    <div class="col-lg-3 add-btm-margin">
+                        <div class="card pointer">
+                            <img src="{% static record.detail.url %}" class="card-img-top" height="300px;"/>
+                        <div class="card-body">
+                            <h2 class="card-title pointer" ><b>Doctor Assigned: {{record.doctor}}</b></h2>
+                            <p class="card-text bio pointer" ><b>Date: </b>{{record.date_of_visit}}</p>
+                            <p class="card-text bio pointer" ><b>Purpose: </b>{{record.purpose}}</p>
+                            <p class="card-text bio pointer" ><b><a href="{% static record.detail.url %}" class="fa fa-cloud-download" download></a> Download Prescription</b></p>
+                        </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+    <div class="space"></div>
+        
+    </main>
+
+{% endblock %}
+

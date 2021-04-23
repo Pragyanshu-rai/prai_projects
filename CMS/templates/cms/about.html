@@ -1,0 +1,57 @@
+{% extends 'cms/base.html' %}
+
+{% load static %}
+
+            {% block breadcrumbs %}
+                {% if user.is_authenticated %}
+                <li class="breadcrumb-item"><a href="{% url 'profile' %}">Profile</a></li>
+                <li class="breadcrumb-item">About-me</li>
+                {% else %}
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item">About-me</li>
+                {% endif %}
+            {% endblock %}
+    
+{% block main_block %}
+   
+    <main class="main-body">
+	    <header class="row welcome-section">    
+            <div class="col-lg-12 text-center contain">
+				<h1><strong>Hey There!</strong></h1>
+            </div>
+                <div class="col-lg-1">
+                </div>
+                <div class="col-lg-10 text-center">
+				<p class="main-content">I built this website!</p>
+                </div>
+                <div class="col-lg-1">
+                </div>
+	    </header>
+            
+        <hr />
+		<div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <img src="{% static 'cms/img/aboutme.svg' %}" class="card-img-top gradient" height="400px;"/>
+                        <div class="card-body">
+                            <h2 class="card-title pointer"><b>Pragyanshu Rai</b></h2>
+                            <h4 class="card-text bg-fade pointer">CEO, Designer, Developer & DBA</h4>
+                            <p class="card-text bio pointer"><b>Graduate from GITAM University Hyd</b></p>
+                            <p class="card-text bio pointer">Welcome to my website, I hope you liked it!!.<br /> If you want to know about this 
+                                site more feel free to contact me.</p>
+                            <p class="card-text bio pointer"><b>(+91) 0123 456 789</b></p>
+                            <a href="mailto:noreply.services.2001@gmail.com" class="card-link"><i class="fa fa-google-plus dodger" style="font-size:50px;" data-toggle="tooltip" dataplacement="right" title="Write Me An Email!"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                </div>
+            </div>
+    <div class="space"></div>
+        
+    </main>
+
+{% endblock %}

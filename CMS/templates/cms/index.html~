@@ -1,0 +1,70 @@
+{% extends 'cms/base.html' %}
+
+{% load static %}
+
+            {% block breadcrumbs %}
+                {% if user.is_authenticated %}
+                <li class="breadcrumb-item"><a href="{% url 'profile' %}">Profile</a></li>
+                {% else %}
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                {% endif %}
+            {% endblock %}
+
+        {% block main_block %}
+        
+        <main class="main-body">
+			<header class="row welcome-section">    
+                <div class="col-lg-12 text-center contain">
+				    <h1>Welcome to Clinic Management System</h1>
+                </div>
+                <div class="col-lg-1">
+                </div>
+                <div class="col-lg-10 text-center">
+                 
+				<p class="main-content">CMS is one of the best health care management systems, We provide a rich interface and fast response time 
+                    with accurate data, we make sure that the user data is never leaked in any way possible.</p>
+                </div>
+                <div class="col-lg-1">
+                </div>
+                <div class="col-lg-12 text-center">
+                    <p class="main-content">The Clinic Management System is designed for ease of use and management.</p>
+                </div>
+			</header>
+            
+            <hr />
+			
+            <div class="main-section">
+				<div class="row">
+					<div class="col-lg-1">
+					</div>
+					<div class="col-lg-6">
+						<img src="{% static 'img/doctor.svg' %}" width="100%" alt="doctor"/>
+					</div>
+					<div class="col-lg-4 text-center">
+						<div class="description-box"> 
+							<h4 class="side-header">Why Clinic Management System?</h4>
+                            <ul class="list-unstyled side-content">
+                                <br />
+                                <li><h5><b>For Clinic</b></h5></li>
+                                <li>Managing patient records is easy now.</li>
+                                <li>Less man power and more output.</li>
+                                <li>Tracking patient upcoming appointments.</li>
+                                <br />
+                                <li><h5><b>For Patients</b></h5></li>
+                                <li>No need to go to the clinic and stand in long queue.</li>
+                                <li>Online prescription saved in the database and can be accessed anytime.</li>
+                                <li>Past consultations are saved in patient record and dashboard.</li>
+                                <li>Book an appointment from anywhere.</li>
+                            </ul>
+                            <br />
+							<a href="{% url 'profile' %}" class="btn btn-primary"><i class="fa fa-heartbeat"></i> Book Now !</a>
+						</div>
+					</div>
+					<div class="col-lg-1">
+					</div>
+				</div>
+			</div>
+    <div class="space"></div>
+		</main>
+
+        {% endblock %}

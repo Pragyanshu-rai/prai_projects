@@ -1,0 +1,203 @@
+from django.db import models
+from django.contrib.auth.models import User
+import datetime
+# Create your models here.
+
+def cancel_booking(booking_id):
+    
+    try:
+        booking = Booking.objects.get(id=booking_id)
+    except:
+        return "oops"
+    
+    his = History()
+    his.add_to_history(booking.id, booking.patient_name, booking.doctor_name, booking.user_id, booking.doctor_id, booking.booking_date,  booking.time_slot)
+    his.reason = "Canceled"
+    his.save()
+    
+    booking.delete()
+    
+
+def to_date(date):
+    
+    if type(date) == str :
+        date = date.replace(" ", "")
+        date = list(map(int, date.split("-")))
+        date = datetime.date(date[0], date[1], date[2]) 
+      
+    return date
+
+def has_duplicate(date, slot, doctor_id, patient_id):
+    
+    booking = Booking.objects.filter(doctor_id=doctor_id)
+    
+    if type(date) == str :
+        date = to_date(date)
+    
+    for index in range(len(booking)):
+        if booking[index].booking_date == date and booking[index].time_slot == slot:
+            return "Doc"
+    
+    booking = Booking.objects.filter(user_id=patient_id)
+    
+    if type(date) == str :
+        date = to_date(date)
+    
+    for index in range(len(booking)):
+        if booking[index].booking_date == date and booking[index].time_slot == slot:
+            return "Pat"
+    
+    return "none"
+
+def check_bookings(today):
+    
+    booking = Booking.objects.all()
+    
+    for index in range(len(booking)):
+        if booking[index].booking_date < today:
+            his = History()
+            his.add_to_history(booking[index].id, booking[index].patient_name, booking[index].doctor_name, booking[index].user_id, booking[index].doctor_id, booking[index].booking_date,  booking[index].time_slot)
+            his.save()
+            booking[index].delete()
+
+def age(dob):
+    
+    today = datetime.date.today()
+    
+    if today.month == dob.month:
+        return str(today.day - dob.day)+" Day(s)"
+    if today.year == dob.year:
+        return str(today.month - dob.month)+" Month(s)"
+    
+    return str(today.year - dob.year - ((today.month, today.day)<(dob.month, dob.day)))+" Year(s)"
+
+
+def delete_instance(product, instance_number):
+    
+    try:
+        pr = Product_instance.objects.filter(product_id=product.id)
+    except:
+        print("An Exception occured")
+    for prod in pr:
+        if prod.instance_number == instance_number:
+            prod.delete()
+            break
+    product.sold -= 1
+    product.save()
+
+class Customer(models.Model):
+    
+    customer = models.OneToOneField(User, on_delete=models.CASCADE)    
+    profile_pic = models.ImageField(null=True)
+    date_of_birth = models.DateField(auto_now_add=False, auto_now=False, blank=True)
+    address = models.CharField(max_length=50)
+    mobile = models.CharField(max_length=11)
+    total_bill = models.FloatField(default=0.0)
+    
+    def add_customer(self, user, dob, address, mobile):
+        self.customer = user
+        self.date_of_birth = dob
+        self.address = address
+        self.mobile = mobile
+    
+    def __str__(self):
+        return str(self.customer.id)+" - "+str(self.customer.first_name)+" - "+str(self.customer.email)+" - "+str(self.mobile)
+
+class Manufacturer(models.Model):
+    
+    name = models.CharField(max_length=25)
+    address = models.CharField(max_length=50)
+    email = models.CharField(max_length=30)
+    mobile = models.CharField(max_length=11)
+    
+    def __str__(self):
+        return str(self.id)+" - "+str(self.name)+" - "+str(self.email)+" - "+str(self.mobile)
+    
+
+class Product(models.Model):
+    
+    manufacturer = models.OneToOneField(Manufacturer, on_delete=models.CASCADE)
+    name = models.CharField(max_length=40)
+    product_type = models.CharField(max_length=20)
+    description = models.CharField(max_length=200)
+    direction = models.CharField(max_length=50)
+    precautions = models.CharField(max_length=50)
+    price = models.FloatField(default=0.0)
+    quantity = models.IntegerField(default=0)
+    sold = models.IntegerField(default=0)
+    total_images = models.IntegerField(default=0)
+    
+    def check_stock(self):
+        if self.quantity == self.sold :
+            return "Product Out Of Stock!"
+        return "Product In Stock!"
+    
+    def __str__(self):
+        return "Product class: "+str(self.id)+", Product: "+str(self.name)+", total in stock: "+str(self.quantity)+", total sold: "+str(self.sold)+", total images: "+str(self.total_images)
+    
+
+class Product_images(models.Model):
+    
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image = models.ImageField(null=True)
+    number = models.IntegerField(default=0)
+    
+    def __str__(self):
+        return str(self.id)+" - "+str(self.image_number)
+    
+
+class Product_instance(models.Model):
+    
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    number = models.IntegerField(default=-1)
+    
+    def create_instance(self, product, number):
+        if product.sold+number > product.quantity :
+            number = product.quantity - product.sold
+        self.product = product
+        self.number = number
+        product.sold += number
+        product.save()
+    
+    def __str__(self):
+        return "Product instance number: "+str(self.id)+", Product: "+str(self.product.name)+", Instance number: "+str(self.number)
+    
+
+class Payment(models.Model):
+    
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    mode = models.CharField(max_length=20)
+    date_of_payment = models.DateField(auto_now_add=True, auto_now=False, blank=True)
+    status = models.CharField(max_length=20)
+    amount = models.FloatField(default=0.0)
+    
+    def __str__(self):
+        return "Customer: "+str(self.customer.user.first_name)+", Mode: "+str(self.mode)
+    
+
+class Order(models.Model):
+    
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, null=True)
+    products = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    Date_of_order = models.DateField(auto_now_add=True, auto_now=False, blank=True)
+    price = models.FloatField(default=0.0)
+    
+    def __str__(self):
+        return "Customer: "+str(self.customer.user.first_name)+", Date: "+str(self.date_of_order)
+    
+
+class Return(models.Model):
+    
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
+    payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, null=True)
+    reason = models.CharField(max_length=100)
+    return_status = models.CharField(max_length=20)
+    payment_status = models.CharField(max_length=20)
+    date_of_return = models.DateField(auto_now_add=True, auto_now=False, blank=True)
+    
+    def __str__(self):
+        return "Customer: "+str(self.customer.user.first_name)+", order_id: "+str(self.order.id)
+    
+

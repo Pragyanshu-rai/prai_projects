@@ -1,0 +1,75 @@
+{% extends 'cms/base.html' %}
+
+{% load static %}
+
+
+            {% block breadcrumbs %}
+                {% if user.is_authenticated %}
+                <li class="breadcrumb-item"><a href="{% url 'profile' %}">Profile</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'forgot' %}">Forgot</a></li>
+                <li class="breadcrumb-item">OTP</li>
+                {% endif %}
+            {% endblock %}
+    
+{% block main_block %}
+
+    <main class="main-body">
+        
+        <header class="row welcome-section">    
+            <div class="col-lg-12 text-center contain">
+				<h1><strong>OTP</strong></h1>
+            </div>    
+            <meta http-equiv="refresh" content="51; {% url 'forgot' %}" />
+	    </header>
+            
+        <hr />
+    
+        <div class="container-fluid">
+            <div class="row">
+            <div class="col-lg-12 text-center contain">
+				<h1><strong>An OTP is only valid for 50 seconds !</strong></h1>
+            </div>
+            <div class="col-lg-12 space"></div>
+                <div class="col-lg-2">
+                </div>
+                <div class="col-lg-8">
+                    <div class="card text-center login">
+                        <div class="card-body kill-padding">
+                            <div class="row">
+                                <div class="col-lg-6 ">
+                                    <img src="{% static 'cms/img/otp.svg' %}" class="card-img-top gradient login" height="100%"/>
+                                </div>
+                                <div class="col-lg-6 text-center ">
+                                    <h2 class="card-title"></h2>
+                                    <h1 class="card-title"><b><span class="dodger">Enter OTP</span></b></h1>
+                                    <form class="text-center" action="" method="POST">
+                                        
+                                        {% csrf_token %}
+                                        <div class="row" data-toggle="tooltip" dataplacement="right">
+                                            <div class="col-lg-12 space"></div>
+                                            <div class="col-lg-12 fas fa-lock dodger side-header" title="OTP"></div>
+                                            <div class="col-lg-12" title="OTP">
+                                                <input class="otp inputs text-center dodger side-content" type='text' name='otp' placeholder="_ _ _ _ _ _"  required />
+                                            </div> 
+                                            <div class="col-lg-12 space"></div> 
+                                            <div class="col-lg-12">
+                                                <input class="btn btn-primary side-content" type='submit' value="Verify" />
+                                            </div>         
+                                            <div class="col-lg-12 space"></div>                                 
+                                        </div>
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+        </div>
+
+    <div class="space"></div>
+    </main>
+
+{% endblock %}

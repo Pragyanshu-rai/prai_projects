@@ -1,0 +1,70 @@
+{% extends 'cms/base.html' %}
+
+{% load static %}
+
+
+            {% block breadcrumbs %}
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+            {% endblock %}
+    
+
+{% block main_block %}
+
+   <main class="main-body">
+	    <header class="row welcome-section">    
+            <div class="col-lg-12 text-center contain">
+				<h1><strong>Hey {{user.first_name}}</strong></h1>
+            </div>
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-10 text-center">
+		    <p class="main-content">Welcome to your profile page!</p>
+            </div>
+            <div class="col-lg-1">
+            </div>
+	    </header>
+            
+        <hr />
+        
+		<div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                </div>
+                <div class="col-lg-4">
+                    <div class="card pointer">
+                        {% if gender == "Male" %}
+                            <img src="{% static 'cms/img/male_avatar.svg' %}" class="card-img-top gradient" height="400px;"/>
+                        {% else %}
+                            <img src="{% static 'cms/img/female_avatar.svg' %}" class="card-img-top gradient" height="400px;"/>
+                        {% endif %}
+                        <div class="card-body">
+                            <h2 class="card-title pointer" ><b>{{user.first_name}}</b></h2>
+                            <h4 class="card-text bg-fade pointer" >{{age}}</h4>
+                            <p class="card-text bio pointer" >{{gender}}</p>
+                            <p class="card-text bio pointer" ><b>{{dob}}</b></p>
+                            <p class="card-text bio pointer" >{{address}}</p>
+                            <p class="card-text bio pointer" ><b>(+91) {{number}}</b></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                </div>
+            </div>
+        
+        <div class="space"></div>
+        <div class="container-fluid">   
+            <div class="row">
+                <div class="col-lg-4">
+                </div>
+                <div class="col-lg-4 text-center">
+                    <a class="btn btn-primary" href="{% url 'forgot' %}">Change Password</a>
+                </div>
+                <div class="col-lg-">
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+{% endblock %}
+

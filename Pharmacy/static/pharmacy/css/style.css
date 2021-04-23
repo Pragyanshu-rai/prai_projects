@@ -1,0 +1,90 @@
+*:focus{
+    outline : none;
+}
+
+a:hover{
+    text-decoration : none;
+}
+
+html{
+    /*for smooth scrolling*/
+    scroll-behavior : smooth;
+}
+
+.canvas{
+    background : #edf6fb;
+}
+
+.header {
+    position: relative;
+    margin-top: 50px;
+}
+
+.shadow{
+    box-shadow : 0 4px 8px 0 #666;
+    transition: 0.3s;
+}
+
+a.nav-link: hover{
+    color : #1e90ff;
+}
+
+.card{
+    margin-bottom : 20px;
+    height : 100%;
+}
+
+.hover-card:hover{
+    cursor : pointer;
+    box-shadow : 0 8px 16px 0 #666;
+}
+
+.card{
+    min-height : 400px;
+}
+
+.space{
+    height : 40px;
+}
+
+.big{
+    font-size : 40px;
+}
+
+.dodger{
+    color : dodgerblue;
+}
+
+.round{
+    border-radius : 15px;
+}
+
+.add-top-margin{
+    margin-top : 20px;
+}
+
+.top-btn{
+    position : fixed;
+    bottom : 60px;
+    right : 10px;
+    border : none;
+    border-radius : 10px;
+    background : rgba(0, 0, 0, 0.3);
+    display : none;
+}
+
+.footer{
+    font-size : large;
+    padding : 4px;
+    background : lightgray;  
+}
+
+.footer-body{
+    margin-top : 10px;
+}
+
+@media(max-width:760px)
+{
+    
+}
+
