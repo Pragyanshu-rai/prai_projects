@@ -25,7 +25,7 @@ html{
     transition: 0.3s;
 }
 
-a.nav-link: hover{
+a.nav-link:hover{
     color : #1e90ff;
 }
 
@@ -69,7 +69,8 @@ a.nav-link: hover{
     right : 10px;
     border : none;
     border-radius : 10px;
-    background : rgba(0, 0, 0, 0.3);
+    color: aqua;
+    background : rgba(0, 0, 0, 0);
     display : none;
 }
 
