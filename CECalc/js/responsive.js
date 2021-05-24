@@ -98,11 +98,11 @@ function scrollAnimate() {
   elementsY.forEach(function (element) {
    if (isElementInViewport(element)) {
     element.classList.add("show-y");
-    play = true;
+    // play = true;
    }
    else {
     element.classList.remove("show-y");
-    paly = false;
+    // paly = false;
    }
   });
   scrollCheck(loops);
